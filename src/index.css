@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ebf3f6;
+  --card: #ffffff;
+  --fg: #0a1926;
+  --muted: #4e6273;
+  --line: #d1dde3;
+  --accent: #028498;
+  --accent-rain: #0284c7;
+  --rain-cyan: #06b6d4;
+  --rain-green: #059669;
+  --rain-blue: #2563eb;
+  --rain-purple: #7c3aed;
+  --rain-crimson: #e11d48;
+}
+
+:root.dark {
+  --bg: #07131c;
+  --card: #0c1d2a;
+  --fg: #e2eff6;
+  --muted: #829cb0;
+  --line: #183042;
+  --accent: #2dd4bf;
+  --accent-rain: #38bdf8;
+  --rain-cyan: #22d3ee;
+  --rain-green: #10b981;
+  --rain-blue: #3b82f6;
+  --rain-purple: #a855f7;
+  --rain-crimson: #f43f5e;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background-image: 
+    radial-gradient(ellipse at 15% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 100%, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+:root.dark body {
+  background-image: 
+    radial-gradient(ellipse at 15% 0%, rgba(34, 211, 238, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.leaflet-container {
+  font: inherit;
+  background: var(--bg);
+}
+
+/* Subtle Falling Monsoon Raindrops Animation */
+@keyframes monsoonFall {
+  0% {
+    transform: translateY(-20px) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.65;
+  }
+  80% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(105vh) translateX(-25px);
+    opacity: 0;
+  }
+}
+
+.monsoon-drop {
+  position: fixed;
+  top: -20px;
+  width: 1.5px;
+  height: 28px;
+  background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.75));
+  pointer-events: none;
+  z-index: 40;
+  animation: monsoonFall linear infinite;
+}
+
+/* Ripple splash on hover for interactive elements */
+.monsoon-card-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.monsoon-card-glow:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 20px -2px rgba(6, 182, 212, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .monsoon-drop {
+    display: none !important;
+  }
+}
